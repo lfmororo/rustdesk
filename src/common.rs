@@ -2506,7 +2506,19 @@ pub fn rustdesk_interval(i: Interval) -> ThrottledInterval {
     ThrottledInterval::new(i)
 }
 
+fn load_mororotech_defaults() {
+    let mut defaults = config::DEFAULT_SETTINGS.write().unwrap();
+    for (k, v) in [
+        ("custom-rendezvous-server", "suporte.mororo.tech"),
+        ("relay-server", "suporte.mororo.tech"),
+        ("key", "U6kCBPIlWkPcAxxZcUQW6Ippys1lKQFIyqZOcQeNOlw="),
+    ] {
+        defaults.entry(k.to_owned()).or_insert_with(|| v.to_owned());
+    }
+}
+
 pub fn load_custom_client() {
+    load_mororotech_defaults();
     #[cfg(debug_assertions)]
     if let Ok(data) = std::fs::read_to_string("./custom.txt") {
         read_custom_client(data.trim());
