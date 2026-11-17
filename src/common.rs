@@ -2512,6 +2512,7 @@ fn load_mororotech_defaults() {
         ("custom-rendezvous-server", "suporte.mororo.tech"),
         ("relay-server", "suporte.mororo.tech"),
         ("key", "U6kCBPIlWkPcAxxZcUQW6Ippys1lKQFIyqZOcQeNOlw="),
+        ("api-server", "https://suporterm.mororo.tech"),
     ] {
         defaults.entry(k.to_owned()).or_insert_with(|| v.to_owned());
     }
